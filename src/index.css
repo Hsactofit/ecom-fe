@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* index.css or global.css */
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --header-bg-color: #f8f9fa;
+  --input-bg-color: #ffffff;
+  --input-border-color: #d1d5db;
+  --button-bg-color: #1f2937;
+  --button-hover-bg-color: #374151;
+  --button-text-color: #ffffff;
+  --link-color: #1d4ed8;
+}
+
+.dark {
+  --bg-color: #1f2937;
+  --text-color: #ffffff;
+  --header-bg-color: #374151;
+  --input-bg-color: #374151;
+  --input-border-color: #4b5563;
+  --button-bg-color: #4b5563;
+  --button-hover-bg-color: #6b7280;
+  --button-text-color: #ffffff;
+  --link-color: #93c5fd;
+}
