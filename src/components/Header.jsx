@@ -18,13 +18,6 @@ function Header({ darkMode, toggleTheme }) {
         </h1>
         <div className="flex items-center space-x-6">
           <nav className="hidden md:flex items-center space-x-6">
-            {/*<Link*/}
-            {/*  to="/"*/}
-            {/*  className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"*/}
-            {/*>*/}
-            {/*  <House weight="bold" size={20} />*/}
-            {/*  <span>Home</span>*/}
-            {/*</Link>*/}
             <Link
               to="/shop"
               className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
@@ -32,20 +25,6 @@ function Header({ darkMode, toggleTheme }) {
               <ShoppingCart weight="bold" size={20} />
               <span>Shop</span>
             </Link>
-            {/*<Link*/}
-            {/*  to="/login"*/}
-            {/*  className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"*/}
-            {/*>*/}
-            {/*  <SignIn weight="bold" size={20} />*/}
-            {/*  <span>Login</span>*/}
-            {/*</Link>*/}
-            {/*<Link*/}
-            {/*  to="/register"*/}
-            {/*  className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"*/}
-            {/*>*/}
-            {/*  <UserCirclePlus weight="bold" size={20} />*/}
-            {/*  <span>Register</span>*/}
-            {/*</Link>*/}
           </nav>
           <button
             onClick={toggleTheme}

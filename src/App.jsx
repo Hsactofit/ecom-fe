@@ -13,39 +13,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { setUser } from "./store/features/authSlice";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   const dispatch = useDispatch();
   const { darkMode } = useSelector((state) => state.theme);
-  const { user } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    // Check if "heaven-user" data exists in localStorage
-    const storedUser = localStorage.getItem("heaven-user");
-    if (storedUser) {
-      try {
-        // Decode and parse the stored user data
-        const decodedUser = JSON.parse(storedUser);
-        dispatch(setUser(decodedUser)); // Update the Redux state with the user data
-      } catch (error) {
-        console.error("Failed to parse user data from localStorage", error);
-      }
-    }
-  }, [dispatch]);
 
   return (
     <div className={darkMode ? "dark" : ""}>
-      <Router>
-        <div>
+      <UserProvider>
+        <Router>
           <Routes>
-            <Route
-              path="/login"
-              element={user ? <Navigate to="/dashboard" /> : <Login />}
-            />
-            <Route
-              path="/register"
-              element={user ? <Navigate to="/dashboard" /> : <Register />}
-            />
+            <Route path="/login" element={<Login />} />
             <Route
               path="/dashboard"
               element={
@@ -54,17 +33,10 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/" element={<Navigate to="/login" replace />} />
           </Routes>
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              success: { style: { background: "#22c55e", color: "white" } },
-              error: { style: { background: "#ef4444", color: "white" } },
-            }}
-          />
-        </div>
-      </Router>
+        </Router>
+      </UserProvider>
     </div>
   );
 }
