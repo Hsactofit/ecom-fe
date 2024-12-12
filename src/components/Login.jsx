@@ -61,25 +61,38 @@ function Login() {
       });
 
       // Set the token in an HTTP-only cookie
-      if (response.data.token) {
-        document.cookie = `technology-heaven-token=${response.data.token}; path=/`;
-      }
+      // if (response.data.token) {
+      //   document.cookie = `technology-heaven-token=${response.data.token}; path=/`;
+      // }
 
-      setUser(response?.data?.user);
-
-      toast.success("Logged in successfully!");
-
-      console.log(response?.data?.user);
-
-      // Redirect based on user type
       if (
         selectedType === "seller" &&
         response?.data?.user?.role === "seller"
       ) {
+        if (response.data.token) {
+          document.cookie = `technology-heaven-token=${response.data.token}; path=/`;
+        }
+        setUser(response?.data?.user);
+        toast.success("Logged in successfully!");
         window.location.href = `${sellerUrl}`;
-      } else {
+      } else if (
+        selectedType === "customer" &&
+        response?.data?.user?.role === "customer"
+      ) {
+        if (response.data.token) {
+          document.cookie = `technology-heaven-token=${response.data.token}; path=/`;
+        }
+        setUser(response?.data?.user);
+        toast.success("Logged in successfully!");
         window.location.href = `${customerUrl}`;
+      } else {
+        // Condition where selectedType and user.role do not match
+        toast.error("Selected type does not match user role.");
       }
+
+      console.log(response?.data?.user);
+
+      // Redirect based on user type
     } catch (error) {
       // Handle login error
       const message =

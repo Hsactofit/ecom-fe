@@ -1,16 +1,11 @@
 import axios from "axios";
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
-// Create the UserContext
 const UserContext = createContext(null);
-
 const apiUrl = import.meta.env.VITE_API_URL;
 
-// Create a provider component
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
-  console.log(user);
 
   const fetchUser = async () => {
     console.log("Fetching user...");
@@ -19,26 +14,26 @@ export const UserProvider = ({ children }) => {
         `${apiUrl}/auth/relogin`,
         {},
         {
-          withCredentials: true, // Ensure cookies are included
+          withCredentials: true,
         }
       );
 
-      if (response.status === 200) {
-        console.log("User fetched successfully:", response.data);
-        setUser(response.data.user); // Set user info if successful
+      if (response.data && response.data.user) {
+        console.log("User fetched successfully:", response.data.user);
+        setUser(response.data.user);
         return response.data.user;
       }
-
-      // Handle forbidden response
-      if (response.status === 403) {
-        throw new Error("Forbidden: User not authenticated");
-      }
+      return null;
     } catch (error) {
-      console.error("Error fetching user:", error.message);
-      setUser(null); // Clear user if not authenticated
-      throw error; // Propagate error to be handled in PrivateRoute
+      console.error("Error fetching user:", error);
+      setUser(null);
+      throw error;
     }
   };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser, fetchUser }}>
@@ -47,7 +42,6 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the UserContext
 export const useUser = () => {
   return useContext(UserContext);
 };
