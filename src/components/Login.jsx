@@ -70,7 +70,7 @@ function Login() {
         response?.data?.user?.role === "seller"
       ) {
         if (response.data.token) {
-          document.cookie = `technology-heaven-token=${response.data.token}; path=/`;
+          document.cookie = `technology-heaven-token=${response.data.token}; domain=.technologyheaven.in; path=/; secure=true; samesite=none; max-age=${7 * 24 * 60 * 60}`; 
         }
         setUser(response?.data?.user);
         toast.success("Logged in successfully!");
@@ -80,7 +80,7 @@ function Login() {
         response?.data?.user?.role === "customer"
       ) {
         if (response.data.token) {
-          document.cookie = `technology-heaven-token=${response.data.token}; path=/`;
+          document.cookie = `technology-heaven-token=${response.data.token}; domain=.technologyheaven.in; path=/; secure=true; samesite=none; max-age=${7 * 24 * 60 * 60}`; 
         }
         setUser(response?.data?.user);
         toast.success("Logged in successfully!");
