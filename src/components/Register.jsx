@@ -72,7 +72,7 @@ function Register() {
     const verifyEmailOtp = async () => {
         try {
             // Replace with actual API call
-            const response = await axios.get(`http://localhost:3001/api/v1/auth/verify-email/${verificationData.emailOtp}`);
+            const response = await axios.get(`https://ecom-be-t42v.onrender.com/api/v1/auth/verify-email/${verificationData.emailOtp}`);
             if(response) {
                 setVerificationData(prev => ({...prev, emailVerified: true}));
                 toast.success('Email verified successfully!');
@@ -85,7 +85,7 @@ function Register() {
     const verifyPhoneOtp = async () => {
         try {
             // Replace with actual API call
-            const response = await axios.post(`http://localhost:3001/api/v1/auth/verify-phone`, { code: verificationData.phoneOtp, phone: formData.phone});
+            const response = await axios.post(`https://ecom-be-t42v.onrender.com/api/v1/auth/verify-phone`, { code: verificationData.phoneOtp, phone: formData.phone});
             setVerificationData(prev => ({...prev, phoneVerified: true}));
             toast.success('Phone verified successfully!');
         } catch (error) {
@@ -135,7 +135,7 @@ function Register() {
 
     const handleBusinessComplete = (skipBusiness = false) => {
         if (skipBusiness) {
-            window.location.href = 'http://localhost:3001/';
+            window.location.href = 'https://ecom-be-t42v.onrender.com/';
             return;
         }
 
@@ -147,7 +147,7 @@ function Register() {
             return;
         }
 
-        window.location.href = 'http://localhost:3001/';
+        window.location.href = 'https://ecom-be-t42v.onrender.com/';
     };
 
     // Render different form sections

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-const API_URL = "http://localhost:3001/api/v1/auth";
+const API_URL = "https://ecom-be-t42v.onrender.com/api/v1/auth";
 
 const api = axios.create({
   baseURL: API_URL,

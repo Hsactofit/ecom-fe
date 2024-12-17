@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-const API_URL = "http://localhost:3001/api/v1/auth";
+const API_URL = "https://ecom-be-t42v.onrender.com/api/v1/auth";
 
 // Helper function to retrieve the token from cookies
 const getTokenFromCookies = () => {
@@ -62,7 +62,11 @@ export const register = createAsyncThunk(
 
         const response = await axios.post(`${API_URL}/signup`, requestData);
 
-        console.log(response.data)
+        // Set cookie with token
+        if (response.data.token) {
+          document.cookie = `technology-heaven-token=${response.data.token}; path=/`;
+        }
+
         return {
           user: response.data.user,
           // role: response.data.user.role,
