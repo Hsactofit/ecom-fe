@@ -129,7 +129,7 @@ function Register() {
         if (selectedType === 'seller') {
             setCurrentStep('business');
         } else {
-            window.location.href = 'http://localhost:3000/';
+            window.location.href = 'https://shop.technologyheaven.in/';
         }
     };
 
